@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest  # Usa la última versión de PostgreSQL
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: myuser    # Usuario para PostgreSQL
+      POSTGRES_PASSWORD: mypassword   # Contraseña del usuario
+      POSTGRES_DB: mydatabase  # Base de datos inicial que se creará
+    ports:
+      - "5432:5432"  # Expone el puerto 5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Volumen para persistir los datos
+
+volumes:
+  postgres_data:
+    driver: local  # Persiste los datos en tu máquina local
